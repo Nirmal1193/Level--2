@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 5.0.1 (Python 3.9.13 on win32)" generated="20221208 16:05:24.756" rpa="true" schemaversion="3">
+<suite id="s1" name="Tasks" source="d:\RoboCorp\Level-@2\tasks.robot">
+<test id="s1-t1" name="Order robots from RobotSpareBin Industries Inc" line="12">
+<kw name="Open the intranet website">
+<kw name="Open Available Browser" library="RPA.Browser.Selenium">
+<arg>https://robotsparebinindustries.com/</arg>
+<doc>Attempts to open a browser on the user's device from a set of
+supported browsers. Automatically downloads a corresponding webdriver
+if none is already installed.</doc>
+<msg timestamp="20221208 16:05:33.671" level="INFO">Creating an instance of the Chrome WebDriver.</msg>
+<msg timestamp="20221208 16:05:41.135" level="INFO">Created Chrome browser with arguments: --disable-dev-shm-usage --disable-web-security --allow-running-insecure-content --no-sandbox</msg>
+<msg timestamp="20221208 16:05:41.136" level="INFO" html="true">&lt;p&gt;Attempted combinations:&lt;/p&gt;&lt;div class="doc"&gt;&lt;table&gt;&lt;tr&gt;&lt;th&gt;Browser&lt;/th&gt;&lt;th&gt;Download&lt;/th&gt;&lt;th&gt;Error&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chrome&lt;/td&gt;&lt;td&gt;False&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/div&gt;</msg>
+<msg timestamp="20221208 16:05:41.136" level="INFO">Opening url 'https://robotsparebinindustries.com/'</msg>
+<status status="PASS" starttime="20221208 16:05:33.668" endtime="20221208 16:05:49.385"/>
+</kw>
+<status status="PASS" starttime="20221208 16:05:33.667" endtime="20221208 16:05:49.387"/>
+</kw>
+<kw name="Log In">
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>username</arg>
+<arg>maria</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:05:49.393" level="INFO">Typing text 'maria' into text field 'username'.</msg>
+<status status="PASS" starttime="20221208 16:05:49.392" endtime="20221208 16:05:49.531"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>password</arg>
+<arg>thoushallnotpass</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:05:49.535" level="INFO">Typing text 'thoushallnotpass' into text field 'password'.</msg>
+<status status="PASS" starttime="20221208 16:05:49.533" endtime="20221208 16:05:49.672"/>
+</kw>
+<kw name="Submit Form" library="RPA.Browser.Selenium">
+<doc>Submits a form identified by ``locator``.</doc>
+<msg timestamp="20221208 16:05:49.673" level="INFO">Submitting form 'None'.</msg>
+<status status="PASS" starttime="20221208 16:05:49.672" endtime="20221208 16:05:49.705"/>
+</kw>
+<kw name="Go To" library="RPA.Browser.Selenium">
+<arg>https://robotsparebinindustries.com/#/robot-order</arg>
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<msg timestamp="20221208 16:05:49.707" level="INFO">Opening url 'https://robotsparebinindustries.com/#/robot-order'</msg>
+<status status="PASS" starttime="20221208 16:05:49.706" endtime="20221208 16:05:49.750"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>xpath://*[@id="root"]/div/div[2]/div/div</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:05:49.750" endtime="20221208 16:05:49.772"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>OK</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:05:49.774" level="INFO">Clicking button 'OK'.</msg>
+<status status="PASS" starttime="20221208 16:05:49.773" endtime="20221208 16:05:49.855"/>
+</kw>
+<status status="PASS" starttime="20221208 16:05:49.390" endtime="20221208 16:05:49.857"/>
+</kw>
+<kw name="Download the Excel file">
+<kw name="Download" library="RPA.HTTP">
+<arg>https://robotsparebinindustries.com/orders.csv</arg>
+<arg>overwrite=True</arg>
+<doc>An alias for the ``HTTP Get`` keyword.</doc>
+<msg timestamp="20221208 16:05:49.861" level="INFO">Creating a new HTTP session</msg>
+<msg timestamp="20221208 16:05:49.861" level="INFO">Creating Session using : alias=rpasession_alias.httpsrobotsparebinindustries.com, url=https://robotsparebinindustries.com, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=True,                     debug=0 </msg>
+<status status="PASS" starttime="20221208 16:05:49.859" endtime="20221208 16:06:06.355"/>
+</kw>
+<status status="PASS" starttime="20221208 16:05:49.857" endtime="20221208 16:06:06.356"/>
+</kw>
+<kw name="Fill the forms">
+<kw name="Get the list of people from the CSV file">
+<var>${people}</var>
+<kw name="Read table from CSV" library="RPA.Tables">
+<var>${table}</var>
+<arg>orders.csv</arg>
+<arg>header=True</arg>
+<doc>Read a CSV file as a table.</doc>
+<msg timestamp="20221208 16:06:06.367" level="INFO">${table} = Table(columns=['Order number', 'Head', 'Body', 'Legs', 'Address'], rows=20)</msg>
+<status status="PASS" starttime="20221208 16:06:06.359" endtime="20221208 16:06:06.367"/>
+</kw>
+<return>
+<value>${table}</value>
+<status status="PASS" starttime="20221208 16:06:06.368" endtime="20221208 16:06:06.368"/>
+</return>
+<msg timestamp="20221208 16:06:06.369" level="INFO">${people} = Table(columns=['Order number', 'Head', 'Body', 'Legs', 'Address'], rows=20)</msg>
+<status status="PASS" starttime="20221208 16:06:06.359" endtime="20221208 16:06:06.370"/>
+</kw>
+<for flavor="IN">
+<var>${person}</var>
+<value>@{people}</value>
+<iter>
+<var name="${person}">{'Order number': '1', 'Head': '1', 'Body': '2', 'Legs': '3', 'Address': 'Address 123'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:06.375" level="INFO">Selecting options from selection list 'head' by value 1.</msg>
+<status status="PASS" starttime="20221208 16:06:06.374" endtime="20221208 16:06:06.489"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:06.539" level="INFO">Clicking button 'id-body-2'.</msg>
+<status status="PASS" starttime="20221208 16:06:06.490" endtime="20221208 16:06:06.632"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:06.635" level="INFO">Typing text 'Address 123' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:06.634" endtime="20221208 16:06:06.788"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:06.789" level="INFO">Typing text '3' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:06.789" endtime="20221208 16:06:06.928"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:06.931" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:06.929" endtime="20221208 16:06:07.027"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:07.027" endtime="20221208 16:06:07.048"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:11.059" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:07.049" endtime="20221208 16:06:11.059"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:06.372" endtime="20221208 16:06:11.060"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:06.372" endtime="20221208 16:06:11.060"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '2', 'Head': '4', 'Body': '1', 'Legs': '5', 'Address': 'Address 456'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:11.064" level="INFO">Selecting options from selection list 'head' by value 4.</msg>
+<status status="PASS" starttime="20221208 16:06:11.063" endtime="20221208 16:06:11.161"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:11.197" level="INFO">Clicking button 'id-body-1'.</msg>
+<status status="PASS" starttime="20221208 16:06:11.161" endtime="20221208 16:06:11.317"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:11.318" level="INFO">Typing text 'Address 456' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:11.317" endtime="20221208 16:06:11.447"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:11.449" level="INFO">Typing text '5' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:11.448" endtime="20221208 16:06:11.558"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:11.560" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:11.559" endtime="20221208 16:06:11.643"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:11.644" endtime="20221208 16:06:11.659"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:15.672" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:11.660" endtime="20221208 16:06:15.672"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:11.061" endtime="20221208 16:06:15.673"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:11.061" endtime="20221208 16:06:15.674"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '3', 'Head': '6', 'Body': '2', 'Legs': '3', 'Address': 'Address 789'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:15.681" level="INFO">Selecting options from selection list 'head' by value 6.</msg>
+<status status="PASS" starttime="20221208 16:06:15.679" endtime="20221208 16:06:15.862"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:15.898" level="INFO">Clicking button 'id-body-2'.</msg>
+<status status="PASS" starttime="20221208 16:06:15.862" endtime="20221208 16:06:15.985"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:15.987" level="INFO">Typing text 'Address 789' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:15.986" endtime="20221208 16:06:16.143"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:16.145" level="INFO">Typing text '3' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:16.144" endtime="20221208 16:06:16.265"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:16.267" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:16.267" endtime="20221208 16:06:16.348"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:16.349" endtime="20221208 16:06:16.367"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:20.370" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:16.367" endtime="20221208 16:06:20.370"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:15.676" endtime="20221208 16:06:20.370"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:15.675" endtime="20221208 16:06:20.370"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '4', 'Head': '2', 'Body': '3', 'Legs': '2', 'Address': 'Address 1'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:20.373" level="INFO">Selecting options from selection list 'head' by value 2.</msg>
+<status status="PASS" starttime="20221208 16:06:20.372" endtime="20221208 16:06:20.465"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:20.507" level="INFO">Clicking button 'id-body-3'.</msg>
+<status status="PASS" starttime="20221208 16:06:20.466" endtime="20221208 16:06:20.601"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:20.604" level="INFO">Typing text 'Address 1' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:20.602" endtime="20221208 16:06:20.720"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:20.723" level="INFO">Typing text '2' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:20.722" endtime="20221208 16:06:20.836"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:20.838" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:20.837" endtime="20221208 16:06:20.924"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:20.925" endtime="20221208 16:06:20.943"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:24.956" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:20.945" endtime="20221208 16:06:24.956"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:20.371" endtime="20221208 16:06:24.957"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:20.371" endtime="20221208 16:06:24.957"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '5', 'Head': '3', 'Body': '5', 'Legs': '1', 'Address': 'Address 2'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:24.959" level="INFO">Selecting options from selection list 'head' by value 3.</msg>
+<status status="PASS" starttime="20221208 16:06:24.958" endtime="20221208 16:06:25.049"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:25.087" level="INFO">Clicking button 'id-body-5'.</msg>
+<status status="PASS" starttime="20221208 16:06:25.050" endtime="20221208 16:06:25.163"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:25.165" level="INFO">Typing text 'Address 2' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:25.164" endtime="20221208 16:06:25.253"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:25.255" level="INFO">Typing text '1' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:25.254" endtime="20221208 16:06:25.333"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:25.335" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:25.334" endtime="20221208 16:06:25.391"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:25.391" endtime="20221208 16:06:25.402"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:29.404" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:25.403" endtime="20221208 16:06:29.404"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:24.958" endtime="20221208 16:06:29.405"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:24.957" endtime="20221208 16:06:29.405"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '6', 'Head': '1', 'Body': '6', 'Legs': '6', 'Address': 'Address 3'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:29.407" level="INFO">Selecting options from selection list 'head' by value 1.</msg>
+<status status="PASS" starttime="20221208 16:06:29.406" endtime="20221208 16:06:29.480"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:29.506" level="INFO">Clicking button 'id-body-6'.</msg>
+<status status="PASS" starttime="20221208 16:06:29.480" endtime="20221208 16:06:29.576"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:29.580" level="INFO">Typing text 'Address 3' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:29.577" endtime="20221208 16:06:29.673"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:29.674" level="INFO">Typing text '6' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:29.673" endtime="20221208 16:06:29.761"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:29.763" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:29.762" endtime="20221208 16:06:29.853"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:29.854" endtime="20221208 16:06:29.869"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:33.879" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:29.870" endtime="20221208 16:06:33.879"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:29.406" endtime="20221208 16:06:33.881"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:29.405" endtime="20221208 16:06:33.881"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '7', 'Head': '5', 'Body': '1', 'Legs': '5', 'Address': 'Address 4'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:33.883" level="INFO">Selecting options from selection list 'head' by value 5.</msg>
+<status status="PASS" starttime="20221208 16:06:33.882" endtime="20221208 16:06:33.970"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:33.996" level="INFO">Clicking button 'id-body-1'.</msg>
+<status status="PASS" starttime="20221208 16:06:33.971" endtime="20221208 16:06:34.056"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:34.057" level="INFO">Typing text 'Address 4' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:34.057" endtime="20221208 16:06:34.134"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:34.135" level="INFO">Typing text '5' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:34.134" endtime="20221208 16:06:34.199"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:34.201" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:34.200" endtime="20221208 16:06:34.251"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:34.251" endtime="20221208 16:06:34.262"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:38.276" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:34.262" endtime="20221208 16:06:38.276"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:33.882" endtime="20221208 16:06:38.277"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:33.882" endtime="20221208 16:06:38.277"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '8', 'Head': '2', 'Body': '3', 'Legs': '3', 'Address': 'Address 5'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:38.280" level="INFO">Selecting options from selection list 'head' by value 2.</msg>
+<status status="PASS" starttime="20221208 16:06:38.279" endtime="20221208 16:06:38.360"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:38.392" level="INFO">Clicking button 'id-body-3'.</msg>
+<status status="PASS" starttime="20221208 16:06:38.360" endtime="20221208 16:06:38.461"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:38.463" level="INFO">Typing text 'Address 5' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:38.462" endtime="20221208 16:06:38.558"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:38.559" level="INFO">Typing text '3' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:38.559" endtime="20221208 16:06:38.637"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:38.638" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:38.638" endtime="20221208 16:06:38.695"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:38.696" endtime="20221208 16:06:38.708"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:42.724" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:38.709" endtime="20221208 16:06:42.724"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:38.278" endtime="20221208 16:06:42.725"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:38.278" endtime="20221208 16:06:42.725"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '9', 'Head': '3', 'Body': '2', 'Legs': '2', 'Address': 'Address 6'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:42.727" level="INFO">Selecting options from selection list 'head' by value 3.</msg>
+<status status="PASS" starttime="20221208 16:06:42.726" endtime="20221208 16:06:42.798"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:42.827" level="INFO">Clicking button 'id-body-2'.</msg>
+<status status="PASS" starttime="20221208 16:06:42.798" endtime="20221208 16:06:42.904"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:42.905" level="INFO">Typing text 'Address 6' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:42.904" endtime="20221208 16:06:43.007"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:43.008" level="INFO">Typing text '2' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:43.007" endtime="20221208 16:06:43.089"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:43.090" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:43.090" endtime="20221208 16:06:43.167"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:43.167" endtime="20221208 16:06:43.183"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:47.188" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:43.184" endtime="20221208 16:06:47.188"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:42.726" endtime="20221208 16:06:47.189"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:42.725" endtime="20221208 16:06:47.189"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '10', 'Head': '4', 'Body': '4', 'Legs': '2', 'Address': 'Address 7'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:47.191" level="INFO">Selecting options from selection list 'head' by value 4.</msg>
+<status status="PASS" starttime="20221208 16:06:47.191" endtime="20221208 16:06:47.270"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:47.295" level="INFO">Clicking button 'id-body-4'.</msg>
+<status status="PASS" starttime="20221208 16:06:47.270" endtime="20221208 16:06:47.364"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:47.365" level="INFO">Typing text 'Address 7' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:47.364" endtime="20221208 16:06:47.442"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:47.444" level="INFO">Typing text '2' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:47.443" endtime="20221208 16:06:47.512"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:47.513" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:47.512" endtime="20221208 16:06:47.567"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:47.568" endtime="20221208 16:06:47.579"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:51.595" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:47.579" endtime="20221208 16:06:51.595"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:47.190" endtime="20221208 16:06:51.596"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:47.190" endtime="20221208 16:06:51.596"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '11', 'Head': '6', 'Body': '6', 'Legs': '1', 'Address': 'Address 8'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:51.598" level="INFO">Selecting options from selection list 'head' by value 6.</msg>
+<status status="PASS" starttime="20221208 16:06:51.598" endtime="20221208 16:06:51.673"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:51.700" level="INFO">Clicking button 'id-body-6'.</msg>
+<status status="PASS" starttime="20221208 16:06:51.674" endtime="20221208 16:06:51.761"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:51.762" level="INFO">Typing text 'Address 8' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:51.762" endtime="20221208 16:06:51.841"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:51.842" level="INFO">Typing text '1' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:51.841" endtime="20221208 16:06:51.911"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:51.912" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:51.912" endtime="20221208 16:06:51.969"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:51.970" endtime="20221208 16:06:51.982"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:06:55.995" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:51.982" endtime="20221208 16:06:55.995"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:51.597" endtime="20221208 16:06:55.995"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:51.596" endtime="20221208 16:06:55.996"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '12', 'Head': '1', 'Body': '3', 'Legs': '3', 'Address': 'Address 9'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:06:55.999" level="INFO">Selecting options from selection list 'head' by value 1.</msg>
+<status status="PASS" starttime="20221208 16:06:55.998" endtime="20221208 16:06:56.073"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:06:56.094" level="INFO">Clicking button 'id-body-3'.</msg>
+<status status="PASS" starttime="20221208 16:06:56.073" endtime="20221208 16:06:56.147"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:56.148" level="INFO">Typing text 'Address 9' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:06:56.148" endtime="20221208 16:06:56.243"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:56.244" level="INFO">Typing text '3' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:06:56.244" endtime="20221208 16:06:56.317"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:06:56.319" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:06:56.317" endtime="20221208 16:06:56.371"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:06:56.371" endtime="20221208 16:06:56.381"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:07:00.393" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:06:56.382" endtime="20221208 16:07:00.393"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:55.996" endtime="20221208 16:07:00.394"/>
+</kw>
+<status status="PASS" starttime="20221208 16:06:55.996" endtime="20221208 16:07:00.394"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '13', 'Head': '1', 'Body': '5', 'Legs': '4', 'Address': 'Address A'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:07:00.398" level="INFO">Selecting options from selection list 'head' by value 1.</msg>
+<status status="PASS" starttime="20221208 16:07:00.397" endtime="20221208 16:07:00.435"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:07:00.460" level="INFO">Clicking button 'id-body-5'.</msg>
+<status status="PASS" starttime="20221208 16:07:00.435" endtime="20221208 16:07:00.526"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:07:00.527" level="INFO">Typing text 'Address A' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:07:00.527" endtime="20221208 16:07:00.612"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:07:00.613" level="INFO">Typing text '4' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:07:00.613" endtime="20221208 16:07:00.686"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:07:00.687" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:07:00.687" endtime="20221208 16:07:00.741"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:07:00.741" endtime="20221208 16:07:00.752"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:07:04.754" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:07:00.753" endtime="20221208 16:07:04.754"/>
+</kw>
+<status status="PASS" starttime="20221208 16:07:00.395" endtime="20221208 16:07:04.755"/>
+</kw>
+<status status="PASS" starttime="20221208 16:07:00.395" endtime="20221208 16:07:04.755"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '14', 'Head': '3', 'Body': '1', 'Legs': '5', 'Address': 'Address B'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:07:04.757" level="INFO">Selecting options from selection list 'head' by value 3.</msg>
+<status status="PASS" starttime="20221208 16:07:04.756" endtime="20221208 16:07:04.836"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<msg timestamp="20221208 16:07:04.861" level="INFO">Clicking button 'id-body-1'.</msg>
+<status status="PASS" starttime="20221208 16:07:04.837" endtime="20221208 16:07:04.924"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:07:04.926" level="INFO">Typing text 'Address B' into text field 'address'.</msg>
+<status status="PASS" starttime="20221208 16:07:04.925" endtime="20221208 16:07:05.015"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<msg timestamp="20221208 16:07:05.017" level="INFO">Typing text '5' into text field 'class:form-control'.</msg>
+<status status="PASS" starttime="20221208 16:07:05.016" endtime="20221208 16:07:05.089"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:07:05.091" level="INFO">Clicking button 'preview'.</msg>
+<status status="PASS" starttime="20221208 16:07:05.090" endtime="20221208 16:07:05.144"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="PASS" starttime="20221208 16:07:05.145" endtime="20221208 16:07:05.156"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<msg timestamp="20221208 16:07:09.171" level="INFO">Slept 4 seconds</msg>
+<status status="PASS" starttime="20221208 16:07:05.157" endtime="20221208 16:07:09.171"/>
+</kw>
+<status status="PASS" starttime="20221208 16:07:04.755" endtime="20221208 16:07:09.171"/>
+</kw>
+<status status="PASS" starttime="20221208 16:07:04.755" endtime="20221208 16:07:09.172"/>
+</iter>
+<iter>
+<var name="${person}">{'Order number': '15', 'Head': '3', 'Body': '2', 'Legs': '6', 'Address': 'Address C'}</var>
+<kw name="Fill and submit the form">
+<arg>${person}</arg>
+<kw name="Select From List By Value" library="RPA.Browser.Selenium">
+<arg>head</arg>
+<arg>${person}[Head]</arg>
+<doc>Selects options from selection list ``locator`` by ``values``.</doc>
+<msg timestamp="20221208 16:07:09.173" level="INFO">Selecting options from selection list 'head' by value 3.</msg>
+<msg timestamp="20221208 16:07:09.176" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=108.0.5359.96)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x004DF243]
+	(No symbol) [0x00467FD1]
+	(No symbol) [0x0035D04D]
+	(No symbol) [0x00342D7A]
+	(No symbol) [0x003ABE7B]
+	(No symbol) [0x003BC196]
+	(No symbol) [0x003A8386]
+	(No symbol) [0x0038163C]
+	(No symbol) [0x0038269D]
+	GetHandleVerifier [0x00779A22+2655074]
+	GetHandleVerifier [0x0076CA24+2601828]
+	GetHandleVerifier [0x00588C0A+619850]
+	GetHandleVerifier [0x00587830+614768]
+	(No symbol) [0x004705FC]
+	(No symbol) [0x00475968]
+	(No symbol) [0x00475A55]
+	(No symbol) [0x0048051B]
+	BaseThreadInitThunk [0x7575FEF9+25]
+	RtlGetAppContainerNamedObjectPath [0x77067BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77067B8E+238]
+</msg>
+<msg timestamp="20221208 16:07:09.186" level="FAIL">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=108.0.5359.96)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x004DF243]
+	(No symbol) [0x00467FD1]
+	(No symbol) [0x0035D04D]
+	(No symbol) [0x00342D7A]
+	(No symbol) [0x003ABE7B]
+	(No symbol) [0x003BC196]
+	(No symbol) [0x003A8386]
+	(No symbol) [0x0038163C]
+	(No symbol) [0x0038269D]
+	GetHandleVerifier [0x00779A22+2655074]
+	GetHandleVerifier [0x0076CA24+2601828]
+	GetHandleVerifier [0x00588C0A+619850]
+	GetHandleVerifier [0x00587830+614768]
+	(No symbol) [0x004705FC]
+	(No symbol) [0x00475968]
+	(No symbol) [0x00475A55]
+	(No symbol) [0x0048051B]
+	BaseThreadInitThunk [0x7575FEF9+25]
+	RtlGetAppContainerNamedObjectPath [0x77067BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77067B8E+238]
+</msg>
+<status status="FAIL" starttime="20221208 16:07:09.173" endtime="20221208 16:07:09.196"/>
+</kw>
+<kw name="Wait And Click Button" library="RPA.Browser.Selenium">
+<arg>id-body-${person}[Body]</arg>
+<doc>Click button identified by ``locator``, once it becomes visible.</doc>
+<status status="NOT RUN" starttime="20221208 16:07:09.196" endtime="20221208 16:07:09.196"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>address</arg>
+<arg>${person}[Address]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20221208 16:07:09.197" endtime="20221208 16:07:09.197"/>
+</kw>
+<kw name="Input Text" library="RPA.Browser.Selenium">
+<arg>class:form-control</arg>
+<arg>${person}[Legs]</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20221208 16:07:09.198" endtime="20221208 16:07:09.198"/>
+</kw>
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>preview</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="NOT RUN" starttime="20221208 16:07:09.199" endtime="20221208 16:07:09.199"/>
+</kw>
+<kw name="Wait Until Page Contains Element" library="RPA.Browser.Selenium">
+<arg>robot-preview</arg>
+<doc>Waits until the element ``locator`` appears on the current page.</doc>
+<status status="NOT RUN" starttime="20221208 16:07:09.199" endtime="20221208 16:07:09.200"/>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<arg>4s</arg>
+<doc>Pauses the test executed for the given time.</doc>
+<status status="NOT RUN" starttime="20221208 16:07:09.200" endtime="20221208 16:07:09.200"/>
+</kw>
+<status status="FAIL" starttime="20221208 16:07:09.172" endtime="20221208 16:07:09.201"/>
+</kw>
+<status status="FAIL" starttime="20221208 16:07:09.172" endtime="20221208 16:07:09.201"/>
+</iter>
+<status status="FAIL" starttime="20221208 16:06:06.370" endtime="20221208 16:07:09.202"/>
+</for>
+<status status="FAIL" starttime="20221208 16:06:06.357" endtime="20221208 16:07:09.203"/>
+</kw>
+<kw name="Get the list of people from the CSV filess">
+<status status="NOT RUN" starttime="20221208 16:07:09.210" endtime="20221208 16:07:09.210"/>
+</kw>
+<kw name="Log out and Close" type="TEARDOWN">
+<kw name="Click Button" library="RPA.Browser.Selenium">
+<arg>logout</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<msg timestamp="20221208 16:07:09.212" level="INFO">Clicking button 'logout'.</msg>
+<msg timestamp="20221208 16:07:09.217" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=108.0.5359.96)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x004DF243]
+	(No symbol) [0x00467FD1]
+	(No symbol) [0x0035D04D]
+	(No symbol) [0x00342D7A]
+	(No symbol) [0x003ABE7B]
+	(No symbol) [0x003BC196]
+	(No symbol) [0x003A8386]
+	(No symbol) [0x0038163C]
+	(No symbol) [0x0038269D]
+	GetHandleVerifier [0x00779A22+2655074]
+	GetHandleVerifier [0x0076CA24+2601828]
+	GetHandleVerifier [0x00588C0A+619850]
+	GetHandleVerifier [0x00587830+614768]
+	(No symbol) [0x004705FC]
+	(No symbol) [0x00475968]
+	(No symbol) [0x00475A55]
+	(No symbol) [0x0048051B]
+	BaseThreadInitThunk [0x7575FEF9+25]
+	RtlGetAppContainerNamedObjectPath [0x77067BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77067B8E+238]
+</msg>
+<msg timestamp="20221208 16:07:09.225" level="FAIL">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=108.0.5359.96)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x004DF243]
+	(No symbol) [0x00467FD1]
+	(No symbol) [0x0035D04D]
+	(No symbol) [0x00342D7A]
+	(No symbol) [0x003ABE7B]
+	(No symbol) [0x003BC196]
+	(No symbol) [0x003A8386]
+	(No symbol) [0x0038163C]
+	(No symbol) [0x0038269D]
+	GetHandleVerifier [0x00779A22+2655074]
+	GetHandleVerifier [0x0076CA24+2601828]
+	GetHandleVerifier [0x00588C0A+619850]
+	GetHandleVerifier [0x00587830+614768]
+	(No symbol) [0x004705FC]
+	(No symbol) [0x00475968]
+	(No symbol) [0x00475A55]
+	(No symbol) [0x0048051B]
+	BaseThreadInitThunk [0x7575FEF9+25]
+	RtlGetAppContainerNamedObjectPath [0x77067BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77067B8E+238]
+</msg>
+<status status="FAIL" starttime="20221208 16:07:09.212" endtime="20221208 16:07:09.229"/>
+</kw>
+<kw name="Close Browser" library="RPA.Browser.Selenium">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20221208 16:07:09.230" endtime="20221208 16:07:11.394"/>
+</kw>
+<status status="FAIL" starttime="20221208 16:07:09.211" endtime="20221208 16:07:11.395">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=108.0.5359.96)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x004DF243]
+	(No symbol) [0x00467FD1]
+	(No symbol) [0x0035D04D]
+	(No symbol) [0x00342D7A]
+	(No symbol) [0x003ABE7B]
+	(No symbol) [0x003BC196]
+	(No symbol) [0x003A8386]
+	(No symbol) [0x0038163C]
+	(No symbol) [0x0038269D]
+	GetHandleVerifier [0x00779A22+2655074]
+	GetHandleVerifier [0x0076CA24+2601828]
+	GetHandleVerifier [0x00588C0A+619850]
+	GetHandleVerifier [0x00587830+614768]
+	(No symbol) [0x004705FC]
+	(No symbol) [0x00475968]
+	(No symbol) [0x00475A55]
+	(No symbol) [0x0048051B]
+	BaseThreadInitThunk [0x7575FEF9+25]
+	RtlGetAppContainerNamedObjectPath [0x77067BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77067B8E+238]
+</status>
+</kw>
+<status status="FAIL" starttime="20221208 16:05:33.663" endtime="20221208 16:07:11.397">NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=108.0.5359.96)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x004DF243]
+	(No symbol) [0x00467FD1]
+	(No symbol) [0x0035D04D]
+	(No symbol) [0x00342D7A]
+	(No symbol) [0x003ABE7B]
+	(No symbol) [0x003BC196]
+	(No symbol) [0x003A8386]
+	(No symbol) [0x0038163C]
+	(No symbol) [0x0038269D]
+	GetHandleVerifier [0x00779A22+2655074]
+	GetHandleVerifier [0x0076CA24+2601828]
+	GetHandleVerifier [0x00588C0A+619850]
+	GetHandleVerifier [0x00587830+614768]
+	(No symbol) [0x004705FC]
+	(No symbol) [0x00475968]
+	(No symbol) [0x00475A55]
+	(No symbol) [0x0048051B]
+	BaseThreadInitThunk [0x7575FEF9+25]
+	RtlGetAppContainerNamedObjectPath [0x77067BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77067B8E+238]
+
+
+Also teardown failed:
+NoSuchWindowException: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=108.0.5359.96)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x004DF243]
+	(No symbol) [0x00467FD1]
+	(No symbol) [0x0035D04D]
+	(No symbol) [0x00342D7A]
+	(No symbol) [0x003ABE7B]
+	(No symbol) [0x003BC196]
+	(No symbol) [0x003A8386]
+	(No symbol) [0x0038163C]
+	(No symbol) [0x0038269D]
+	GetHandleVerifier [0x00779A22+2655074]
+	GetHandleVerifier [0x0076CA24+2601828]
+	GetHandleVerifier [0x00588C0A+619850]
+	GetHandleVerifier [0x00587830+614768]
+	(No symbol) [0x004705FC]
+	(No symbol) [0x00475968]
+	(No symbol) [0x00475A55]
+	(No symbol) [0x0048051B]
+	BaseThreadInitThunk [0x7575FEF9+25]
+	RtlGetAppContainerNamedObjectPath [0x77067BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77067B8E+238]
+</status>
+</test>
+<status status="FAIL" starttime="20221208 16:05:24.785" endtime="20221208 16:07:11.416"/>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1" skip="0">All Tasks</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="0" fail="1" skip="0" id="s1" name="Tasks">Tasks</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20221208 16:05:33.638" level="WARN">This is a deprecated import that will be removed in favor of RPA.Robocorp.Vault</msg>
+<msg timestamp="20221208 16:07:09.176" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=108.0.5359.96)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x004DF243]
+	(No symbol) [0x00467FD1]
+	(No symbol) [0x0035D04D]
+	(No symbol) [0x00342D7A]
+	(No symbol) [0x003ABE7B]
+	(No symbol) [0x003BC196]
+	(No symbol) [0x003A8386]
+	(No symbol) [0x0038163C]
+	(No symbol) [0x0038269D]
+	GetHandleVerifier [0x00779A22+2655074]
+	GetHandleVerifier [0x0076CA24+2601828]
+	GetHandleVerifier [0x00588C0A+619850]
+	GetHandleVerifier [0x00587830+614768]
+	(No symbol) [0x004705FC]
+	(No symbol) [0x00475968]
+	(No symbol) [0x00475A55]
+	(No symbol) [0x0048051B]
+	BaseThreadInitThunk [0x7575FEF9+25]
+	RtlGetAppContainerNamedObjectPath [0x77067BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77067B8E+238]
+</msg>
+<msg timestamp="20221208 16:07:09.217" level="WARN">Keyword 'Capture Page Screenshot' could not be run on failure: Message: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: chrome=108.0.5359.96)
+Stacktrace:
+Backtrace:
+	(No symbol) [0x004DF243]
+	(No symbol) [0x00467FD1]
+	(No symbol) [0x0035D04D]
+	(No symbol) [0x00342D7A]
+	(No symbol) [0x003ABE7B]
+	(No symbol) [0x003BC196]
+	(No symbol) [0x003A8386]
+	(No symbol) [0x0038163C]
+	(No symbol) [0x0038269D]
+	GetHandleVerifier [0x00779A22+2655074]
+	GetHandleVerifier [0x0076CA24+2601828]
+	GetHandleVerifier [0x00588C0A+619850]
+	GetHandleVerifier [0x00587830+614768]
+	(No symbol) [0x004705FC]
+	(No symbol) [0x00475968]
+	(No symbol) [0x00475A55]
+	(No symbol) [0x0048051B]
+	BaseThreadInitThunk [0x7575FEF9+25]
+	RtlGetAppContainerNamedObjectPath [0x77067BBE+286]
+	RtlGetAppContainerNamedObjectPath [0x77067B8E+238]
+</msg>
+</errors>
+</robot>
